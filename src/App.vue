@@ -1,14 +1,22 @@
 <template>
-  <div>导航栏 | <router-link to="/">Hello</router-link>
-    | <router-link to="/xxx">Hello2</router-link>
-  </div>
-  <hr>
   <router-view />
 </template>
 
-<script>
-
-export default {
-  name: 'App',
-}
+<script lang="ts">
+  import { ref, provide } from "vue";
+  import { router } from "./router";
+  export default {
+    name: "App",
+    setup() {
+      const width = document.documentElement.clientWidth;
+      // console.log('width', width);
+      const menuVisible = ref<boolean>(!width <= 500);
+      provide("menuVisible", menuVisible); // set
+      router.afterEach(() => {
+          if (width <= 500) {
+              menuVisible.value = false;
+          }
+      });
+    },
+  };
 </script>
