@@ -1,19 +1,11 @@
-import { createApp } from 'vue'
-import App from './App.vue'
-import './index.css'
-import {createRouter, createWebHashHistory} from 'vue-router'
-import Hello from './components/Hello.vue'
-import Hello2 from './components/Hello2.vue'
-
-const history = createWebHashHistory();
-const router = createRouter({
-		history,
-		routes: [
-				{path: '/', component: Hello},
-				{path: '/xxx', component: Hello2}
-		]
-});
+import { createApp } from "vue";
+// @ts-ignore
+import App from "./App.vue";
+import './lib/vueConponent.scss'
+import "./index.scss";
+import { router } from './router';
 
 const app = createApp(App);
+// app.config.globalProperties.$test = 'test' // 全局挂载
 app.use(router);
-app.mount('#app');
+app.mount("#app");
